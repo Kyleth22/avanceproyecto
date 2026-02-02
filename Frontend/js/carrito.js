@@ -2,6 +2,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     const contenedorProductos = document.querySelector('.carrito-productos');
     const token = localStorage.getItem('token');
     const costoEnvio = 150;
+    // URL de tu servidor en Render
+    const BASE_URL = 'https://le-parfum-backend.onrender.com';
 
     if (!token) {
         window.location.href = 'login.html';
@@ -11,7 +13,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     // --- 1. CARGAR PRODUCTOS DESDE EL BACKEND ---
     const cargarCarrito = async () => {
         try {
-            const res = await fetch('http://localhost:3000/api/carrito-usuario', {
+            const res = await fetch(`${BASE_URL}/api/carrito-usuario`, {
                 headers: { 'Authorization': token }
             });
             const productos = await res.json();
@@ -79,7 +81,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             if (nuevaCantidad < 1) return;
 
             try {
-                const res = await fetch('http://localhost:3000/api/carrito/cantidad', {
+                const res = await fetch(`${BASE_URL}/api/carrito/cantidad`, {
                     method: 'PUT',
                     headers: { 'Content-Type': 'application/json', 'Authorization': token },
                     body: JSON.stringify({ producto_id: productoId, cantidad: nuevaCantidad })
@@ -95,7 +97,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (e.target.classList.contains('eliminar')) {
             if (!confirm("¿Eliminar producto?")) return;
             try {
-                await fetch(`http://localhost:3000/api/carrito/${productoId}`, {
+                await fetch(`${BASE_URL}/api/carrito/${productoId}`, {
                     method: 'DELETE',
                     headers: { 'Authorization': token }
                 });
