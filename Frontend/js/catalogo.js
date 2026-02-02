@@ -1,5 +1,5 @@
 /**
- * Lógica para el Catálogo - LE PARFUM
+ * Lógica para el Catálogo - LE PARFUM (Versión Producción)
  */
 
 // Sincronización de sesión entre pestañas
@@ -12,6 +12,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     const filtroMarca = document.getElementById('filtro-marca');
     const filtroPrecio = document.getElementById('filtro-precio');
     const authContainer = document.getElementById('auth-container');
+    
+    // URL de tu servidor en Render
+    const BASE_URL = 'https://le-parfum-backend.onrender.com';
     
     let productosGlobales = [];
 
@@ -36,7 +39,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     // 2. FUNCIÓN PARA LLENAR FILTRO DE MARCAS
     const llenarFiltroMarcas = (productos) => {
         const marcas = [...new Set(productos.map(p => p.marca))];
-        // Limpiar excepto la primera opción
         filtroMarca.innerHTML = '<option value="todos">Todas las Marcas</option>';
         marcas.sort().forEach(marca => {
             if (marca) {
@@ -85,7 +87,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 const productoId = e.currentTarget.getAttribute('data-id');
 
                 try {
-                    const res = await fetch('http://localhost:3000/api/carrito', {
+                    const res = await fetch(`${BASE_URL}/api/carrito`, {
                         method: 'POST',
                         headers: { 
                             'Content-Type': 'application/json',
@@ -107,7 +109,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 const btn = e.currentTarget;
 
                 try {
-                    const res = await fetch('http://localhost:3000/api/deseos', {
+                    const res = await fetch(`${BASE_URL}/api/deseos`, {
                         method: 'POST',
                         headers: { 
                             'Content-Type': 'application/json',
@@ -120,8 +122,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
                     if (res.ok) {
                         btn.innerText = "❤️ EN TU LISTA";
-                        btn.style.background = "#e74c3c"; // Color rojo para deseos
-                        btn.disabled = true; // Evita múltiples clics
+                        btn.style.background = "#e74c3c"; 
+                        btn.disabled = true; 
                     } else {
                         console.error("Error del servidor:", data);
                     }
@@ -153,11 +155,11 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // 6. CARGA INICIAL
     try {
-        const res = await fetch('http://localhost:3000/api/productos');
+        const res = await fetch(`${BASE_URL}/api/productos`);
         productosGlobales = await res.json();
         llenarFiltroMarcas(productosGlobales);
         renderizar(productosGlobales);
     } catch (error) {
-        listaProductos.innerHTML = '<p style="color: red; text-align:center;">Error de conexión.</p>';
+        listaProductos.innerHTML = '<p style="color: red; text-align:center;">Error de conexión con el servidor.</p>';
     }
 });
