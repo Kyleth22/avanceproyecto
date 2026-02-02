@@ -1,7 +1,3 @@
-/**
- * Lógica para el Catálogo - LE PARFUM (Versión Producción)
- */
-
 // Sincronización de sesión entre pestañas
 window.addEventListener('storage', (e) => {
     if (e.key === 'token' && !e.newValue) window.location.reload();
