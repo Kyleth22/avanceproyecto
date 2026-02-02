@@ -1,5 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
     const formRegistro = document.getElementById('form-registro');
+    
+    // URL de tu servidor en Render
+    const BASE_URL = 'https://le-parfum-backend.onrender.com';
 
     if (formRegistro) {
         formRegistro.addEventListener('submit', async (e) => {
@@ -18,8 +21,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             try {
-                // 3. Envío al Backend real
-                const respuesta = await fetch('http://localhost:3000/api/registro', {
+                // 3. Envío al Backend en Render
+                const respuesta = await fetch(`${BASE_URL}/api/registro`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ usuario, correo, password, direccion })
@@ -29,6 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (respuesta.ok) {
                     alert(`¡Bienvenido, ${usuario}! Tu cuenta ha sido creada exitosamente.`);
+                    // Redirigir al login para que el usuario inicie sesión
                     window.location.href = "login.html";
                 } else {
                     alert(resultado.message || "Error al registrar usuario");
@@ -36,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             } catch (error) {
                 console.error("Error de conexión:", error);
-                alert("No se pudo conectar con el servidor.");
+                alert("No se pudo conectar con el servidor de Render.");
             }
         });
     }
