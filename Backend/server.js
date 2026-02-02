@@ -181,6 +181,31 @@ app.post('/api/pedidos', verificarToken, async (req, res, next) => {
         next(error);
     }
 });
+app.put('/api/cambiar-password', verificarToken, async (req, res, next) => {
+    const { passwordActual, passwordNueva } = req.body;
+    const usuarioId = req.usuarioId;
+
+    try {
+        // 1. Obtener la contraseña actual de la base de datos
+        const [rows] = await db.query('SELECT password FROM usuarios WHERE id = ?', [usuarioId]);
+        if (rows.length === 0) return res.status(404).json({ message: "Usuario no encontrado" });
+
+        // 2. Verificar que la contraseña actual sea correcta
+        const esValida = await bcrypt.compare(passwordActual, rows[0].password);
+        if (!esValida) return res.status(401).json({ message: "La contraseña actual es incorrecta" });
+
+        // 3. Cifrar la nueva contraseña
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(passwordNueva, salt);
+
+        // 4. Actualizar en la base de datos
+        await db.query('UPDATE usuarios SET password = ? WHERE id = ?', [hashedPassword, usuarioId]);
+
+        res.json({ status: 'success', message: "Contraseña actualizada correctamente" });
+    } catch (error) {
+        next(error);
+    }
+});
 
 //MANEJADOR DE ERRORES GLOBAL
 app.use((err, req, res, next) => {
