@@ -1,6 +1,9 @@
 document.addEventListener('DOMContentLoaded', async () => {
     const token = localStorage.getItem('token');
     
+    // URL de tu servidor en Render
+    const BASE_URL = 'https://le-parfum-backend.onrender.com';
+    
     // Selectores principales
     const bloques = document.querySelectorAll('.bloque-confirmacion');
     const productosContainer = bloques[0];
@@ -12,12 +15,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     // --- 1. CARGAR DATOS INICIALES ---
     const cargarResumen = async () => {
         try {
-            const resCart = await fetch('http://localhost:3000/api/carrito-usuario', {
+            const resCart = await fetch(`${BASE_URL}/api/carrito-usuario`, {
                 headers: { 'Authorization': token }
             });
             const productos = await resCart.json();
 
-            const resPerfil = await fetch('http://localhost:3000/api/perfil', {
+            const resPerfil = await fetch(`${BASE_URL}/api/perfil`, {
                 headers: { 'Authorization': token }
             });
             const usuario = await resPerfil.json();
@@ -93,14 +96,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     btnConfirmar.addEventListener('click', async (e) => {
         e.preventDefault();
         
-        // Obtenemos el total dinámicamente del resumen
         const totalTexto = document.querySelector('.linea-total.final span:last-child').innerText;
         const totalNumerico = parseFloat(totalTexto.replace(/[^0-9.-]+/g, ""));
 
         if (confirm("¿Deseas finalizar tu compra con estos datos?")) {
             try {
                 // PASO A: Guardar el registro en la tabla 'pedidos' del Backend
-                const resPedido = await fetch('http://localhost:3000/api/pedidos', {
+                const resPedido = await fetch(`${BASE_URL}/api/pedidos`, {
                     method: 'POST',
                     headers: { 
                         'Content-Type': 'application/json',
@@ -113,15 +115,12 @@ document.addEventListener('DOMContentLoaded', async () => {
 
                 if (resPedido.ok) {
                     // PASO B: Si el pedido se guardó, vaciamos el carrito
-                    await fetch('http://localhost:3000/api/carrito-vaciar', {
+                    await fetch(`${BASE_URL}/api/carrito-vaciar`, {
                         method: 'DELETE',
                         headers: { 'Authorization': token }
                     });
 
-                    // Guardamos el código del pedido para mostrarlo en la página de éxito
                     localStorage.setItem('ultimo_pedido', datosPedido.codigo);
-                    
-                    // PASO C: Redirigir a la página de éxito
                     window.location.href = 'compra-exitosa.html'; 
                 } else {
                     alert("Error al registrar el pedido en la base de datos.");
