@@ -7,6 +7,9 @@ window.addEventListener('storage', (event) => {
 document.addEventListener('DOMContentLoaded', async () => {
     const token = localStorage.getItem('token');
     
+    // URL de tu servidor en Render
+    const BASE_URL = 'https://le-parfum-backend.onrender.com';
+    
     if (!token) {
         window.location.href = "login.html";
         return;
@@ -28,8 +31,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
     }
 
+    // --- 1. CARGAR DATOS DEL PERFIL DESDE RENDER ---
     try {
-        const res = await fetch('http://localhost:3000/api/perfil', {
+        const res = await fetch(`${BASE_URL}/api/perfil`, {
             headers: { 'Authorization': token }
         });
         
@@ -48,6 +52,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         console.error("Error cargando perfil", err); 
     }
 
+    // --- 2. LÓGICA DE EDICIÓN ---
     let editMode = false;
     btnEdit.addEventListener('click', async () => {
         editMode = !editMode;
@@ -59,7 +64,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             btnEdit.style.color = "#1e1e1e";
         } else {
             try {
-                const res = await fetch('http://localhost:3000/api/perfil', {
+                // Actualizar datos en la base de datos de Aiven a través de Render
+                const res = await fetch(`${BASE_URL}/api/perfil`, {
                     method: 'PUT',
                     headers: { 
                         'Content-Type': 'application/json', 
