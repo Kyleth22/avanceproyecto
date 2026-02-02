@@ -60,6 +60,21 @@ app.get('/api/perfil', verificarToken, async (req, res, next) => {
         res.json(rows[0]);
     } catch (error) { next(error); }
 });
+// RUTA PARA ACTUALIZAR PERFIL
+app.put('/api/perfil', verificarToken, async (req, res, next) => {
+    const { nombre, direccion } = req.body;
+    const usuarioId = req.usuarioId;
+
+    try {
+        const query = 'UPDATE usuarios SET nombre_usuario = ?, direccion = ? WHERE id = ?';
+        await db.query(query, [nombre, direccion, usuarioId]);
+        
+        res.json({ status: 'success', message: 'Perfil actualizado correctamente' });
+    } catch (error) {
+        console.error("Error al actualizar perfil:", error);
+        next(error);
+    }
+});
 
 //RUTAS DE PRODUCTOS Y CARRITO
 
