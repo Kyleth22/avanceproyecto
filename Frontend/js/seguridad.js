@@ -1,6 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
     const formPassword = document.getElementById('form-password');
     const token = localStorage.getItem('token');
+    
+    // URL de tu servidor en Render
+    const BASE_URL = 'https://le-parfum-backend.onrender.com';
 
     if (!formPassword) return;
 
@@ -14,7 +17,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (nueva.length < 8) return alert("La nueva contraseña debe tener al menos 8 caracteres");
 
         try {
-            const res = await fetch('http://localhost:3000/api/cambiar-password', {
+            // Petición PUT al endpoint de Render
+            const res = await fetch(`${BASE_URL}/api/cambiar-password`, {
                 method: 'PUT',
                 headers: { 
                     'Content-Type': 'application/json', 
@@ -31,7 +35,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 alert(data.message || "Error al actualizar");
             }
         } catch (err) { 
-            alert("Error al conectar con el servidor"); 
+            console.error("Error en cambio de password:", err);
+            alert("Error al conectar con el servidor de Render"); 
         }
     });
 });
