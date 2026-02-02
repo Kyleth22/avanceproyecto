@@ -1,5 +1,5 @@
 
-//SINCRONIZACIÓN GLOBAL
+// SINCRONIZACIÓN GLOBAL
 // Si cierras sesión en la pestaña de Perfil, esta pestaña de Index se limpia sola.
 window.addEventListener('storage', (event) => {
     if (event.key === 'token' && !event.newValue) {
@@ -9,7 +9,10 @@ window.addEventListener('storage', (event) => {
 
 document.addEventListener('DOMContentLoaded', () => {
     
-    //LÓGICA DE ESTADO DE SESIÓN
+    // URL de tu servidor en Render
+    const BASE_URL = 'https://le-parfum-backend.onrender.com';
+
+    // LÓGICA DE ESTADO DE SESIÓN
     const authContainer = document.querySelector('.auth-links');
     const token = localStorage.getItem('token');
     const usuarioData = localStorage.getItem('usuario');
@@ -26,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('logout-btn-index').addEventListener('click', (e) => {
             e.preventDefault();
             
-            //Acción de cerrar sesión
+            // Acción de cerrar sesión
             localStorage.removeItem('token');
             localStorage.removeItem('usuario');
             
@@ -36,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    //LÓGICA DEL FORMULARIO DE RECOMENDACIONES
+    // LÓGICA DEL FORMULARIO DE RECOMENDACIONES
     const formRecomendacion = document.getElementById('form-recomendacion');
     if (formRecomendacion) {
         formRecomendacion.addEventListener('submit', async (e) => {
@@ -50,7 +53,8 @@ document.addEventListener('DOMContentLoaded', () => {
             };
 
             try {
-                const respuesta = await fetch('http://localhost:3000/api/recomendaciones', {
+                // Petición a la API en Render
+                const respuesta = await fetch(`${BASE_URL}/api/recomendaciones`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(datos)
@@ -66,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             } catch (error) {
                 console.error("Error al conectar con el servidor:", error);
-                alert('No se pudo conectar con el servidor.');
+                alert('No se pudo conectar con el servidor de Render.');
             }
         });
     }
