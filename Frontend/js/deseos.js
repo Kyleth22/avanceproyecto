@@ -1,26 +1,30 @@
 document.addEventListener('DOMContentLoaded', async () => {
     const gridDeseos = document.getElementById('grid-deseos');
     const token = localStorage.getItem('token');
+    
+    // URL de tu servidor en Render
+    const BASE_URL = 'https://le-parfum-backend.onrender.com';
 
     if (!token) {
         window.location.href = 'login.html';
         return;
     }
+    
     const logoutBtn = document.getElementById('logout-btn');
     if (logoutBtn) {
         logoutBtn.addEventListener('click', (e) => {
-            e.preventDefault(); // Evita que el enlace recargue la página de inmediato
+            e.preventDefault(); 
             
-            localStorage.clear(); // Borra token y datos de usuario
+            localStorage.clear(); 
             alert("Has cerrado sesión correctamente.");
-            window.location.href = 'index.html'; // Redirige al inicio
+            window.location.href = 'index.html'; 
         });
     }
 
     // --- 1. CARGAR PRODUCTOS DE LA LISTA DE DESEOS ---
     const cargarDeseos = async () => {
         try {
-            const res = await fetch('http://localhost:3000/api/deseos-usuario', {
+            const res = await fetch(`${BASE_URL}/api/deseos-usuario`, {
                 headers: { 'Authorization': token }
             });
             const productos = await res.json();
@@ -56,13 +60,12 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (!confirm("¿Quitar de tu lista de favoritos?")) return;
 
         try {
-            const res = await fetch(`http://localhost:3000/api/deseos/${id}`, {
+            const res = await fetch(`${BASE_URL}/api/deseos/${id}`, {
                 method: 'DELETE',
                 headers: { 'Authorization': token }
             });
 
             if (res.ok) {
-                // Al eliminar aquí, automáticamente en catálogo volverá a aparecer el botón "Añadir a deseos"
                 cargarDeseos(); 
             }
         } catch (error) {
@@ -73,7 +76,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     // --- 4. ACCIÓN: AGREGAR AL CARRITO ---
     window.agregarAlCarrito = async (id) => {
         try {
-            const res = await fetch('http://localhost:3000/api/carrito', {
+            const res = await fetch(`${BASE_URL}/api/carrito`, {
                 method: 'POST',
                 headers: { 
                     'Content-Type': 'application/json',
