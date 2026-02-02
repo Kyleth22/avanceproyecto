@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirmación de compra | LE PARFUM</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/styles.css">
+</head>
+
+<body>
+
+<header class="header-principal">
+    <div class="header-top">
+        <div class="logo">
+            <h1>LE PARFUM</h1>
+        </div>
+
+        <div class="auth-links">
+            <a href="#">Perfil</a>
+            <a href="#">Cerrar sesión</a>
+        </div>
+    </div>
+
+    <nav class="nav-principal">
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="catalogo.html">Catálogo</a></li>
+            <li><a href="deseos.html">Lista de deseos</a></li>
+            <li><a href="carrito.html" class="activo">Carrito</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main class="confirmacion-container">
+
+    <h2>Confirmar tu compra</h2>
+
+    <div class="confirmacion-grid">
+
+        <section class="bloque-confirmacion">
+            <h3>Productos</h3>
+
+            
+        </section>
+
+        <section class="bloque-confirmacion">
+            <h3>Dirección de envío</h3>
+
+            <p class="info-texto">
+                
+            </p>
+
+            <details class="editar-detalle">
+                <summary>Editar dirección</summary>
+
+                <div class="editar-form">
+                    <input type="text" placeholder="Nombre completo">
+                    <input type="text" placeholder="Calle y número">
+                    <input type="text" placeholder="Colonia">
+                    <input type="text" placeholder="Ciudad">
+                    <input type="text" placeholder="Código postal">
+                </div>
+            </details>
+        </section>
+
+        <section class="bloque-confirmacion">
+            <h3>Método de pago</h3>
+
+            <p class="info-texto">
+                Tarjeta de crédito<br>
+                
+            </p>
+
+            <details class="editar-detalle">
+                <summary>Cambiar método de pago</summary>
+
+                <div class="editar-form">
+                    <select>
+                        <option>Tarjeta de crédito</option>
+                        <option>Tarjeta de débito</option>
+                        <option>Pago en efectivo</option>
+                    </select>
+
+                    <input type="text" placeholder="Número de tarjeta">
+                    <input type="text" placeholder="Fecha de vencimiento">
+                    <input type="text" placeholder="CVV">
+                </div>
+            </details>
+        </section>
+
+        <section class="bloque-confirmacion total-confirmacion">
+            <div class="linea-total">
+                <span>Subtotal</span>
+                <span>$0 MXN</span>
+            </div>
+
+            <div class="linea-total">
+                <span>Envío</span>
+                <span>$150 MXN</span>
+            </div>
+
+            <div class="linea-total final">
+                <span>Total</span>
+                <span>$0 MXN</span>
+            </div>
+
+            <a href="compra-exitosa.html" class="btn-principal">
+                Confirmar compra
+            </a>
+
+            <a href="carrito.html" class="btn-secundario">
+                Volver al carrito
+            </a>
+        </section>
+
+    </div>
+
+</main>
+
+<footer class="footer">
+    <p>&copy; LE PARFUM</p>
+</footer>
+<script src="../js/confirmacion.js"></script>
+</body>
+</html>

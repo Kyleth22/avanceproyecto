@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro | LE PARFUM</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/styles.css">
+</head>
+<body>
+
+    <header class="header-principal">
+        <div class="header-top">
+            <div class="logo">
+                <h1>LE PARFUM</h1>
+            </div>
+
+            <div class="auth-links">
+                <a href="login.html">Iniciar sesión</a>
+            </div>
+        </div>
+
+        <nav class="nav-principal">
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="catalogo.html">Catálogo</a></li>
+                <li><a href="deseos.html">Lista de deseos</a></li>
+                <li><a href="carrito.html">Carrito</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="recomendaciones auth-page">
+        <h2>Crear cuenta</h2>
+        <p>Regístrate para guardar tus compras, deseos y recibir recomendaciones personalizadas.</p>
+
+        <form id="form-registro">
+            <input type="text" id="reg-usuario" name="usuario" placeholder="Nombre de usuario" required>
+
+            <input type="email" id="reg-correo" name="correo" placeholder="Correo electrónico" required>
+
+            <input type="password" id="reg-password" name="password" placeholder="Contraseña" required>
+
+            <input type="text" id="reg-direccion" name="direccion" placeholder="Dirección (opcional)">
+
+            <button type="submit">Registrarme</button>
+        </form>
+
+        <p style="margin-top: 20px;">
+            ¿Ya tienes cuenta?
+            <a href="login.html" style="color: var(--color-acento); text-decoration: none; font-weight: bold;">
+                Inicia sesión aquí
+            </a>
+        </p>
+    </section>
+
+    <footer class="footer">
+        <p>Teléfono: 899-999-9999</p>
+        <p>Correo electrónico: leparfum@hotmail.com</p>
+        <p>Redes sociales: @LE_PARFUM</p>
+        <p class="copyright">&copy; LE PARFUM</p>
+    </footer>
+
+    <script src="../js/registro.js"></script>
+</body>
+</html>

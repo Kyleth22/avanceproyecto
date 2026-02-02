@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="Perfumes, Fragancias, Tienda online">
+    <meta name="description" content="LE PARFUM - Tienda de perfumes y fragancias">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LE PARFUM</title>
+    <link rel="stylesheet" href="../styles/styles.css">
+</head>
+
+<body>
+
+    <header class="header-principal">
+
+        <div class="header-top">
+            <div class="logo">
+                <h1>LE PARFUM</h1>
+            </div>
+
+            <div class="auth-links">
+                <a href="login.html">Iniciar sesión</a>
+                <a href="registro.html">Registrarse</a>
+            </div>
+        </div>
+
+        <nav class="nav-principal">
+            <ul>
+                <li><a href="index.html" class="activo">Inicio</a></li>
+                <li><a href="catalogo.html">Catálogo</a></li>
+                <li><a href="deseos.html">Lista de deseos</a></li>
+                <li><a href="carrito.html">Carrito</a></li>
+            </ul>
+        </nav>
+
+    </header>
+
+    <main>
+
+        <section class="contenido-header">
+            <p>
+                LE PARFUM se dedica a la venta de perfumes y fragancias, brindando atención personalizada
+                a sus clientes según sus gustos y preferencias, ofreciendo siempre productos de calidad
+                y experiencias únicas.
+            </p>
+
+            <p>
+                <strong>Misión:</strong> Brindar perfumes de alta calidad con atención personalizada,
+                ayudando a cada cliente a encontrar el aroma ideal según su estilo y personalidad.
+            </p>
+
+            <p>
+                <strong>Visión:</strong> Ser una perfumería reconocida por su excelencia, variedad de fragancias
+                y compromiso con la satisfacción del cliente.
+            </p>
+        </section>
+
+        <section class="perfumes">
+            <h2>Nuestros perfumes</h2>
+
+            <div class="contenedor_perfumes">
+
+                <article class="caja_perfume">
+                    <h3>Hugo Boss Bottled Infinite</h3>
+                    <img src="../img/HugoBoss.jpg" alt="Hugo Boss Bottled Infinite">
+                    <p>
+                        Fragancia fresca y amaderada con notas de manzana, mandarina y canela, combinadas con lavanda y sándalo.
+                    </p>
+                </article>
+
+                <article class="caja_perfume">
+                    <h3>Armaf Odyssey Spectra</h3>
+                    <img src="../img/Spectra.png" alt="Armaf Odyssey Spectra">
+                    <p>
+                        Fragancia vibrante con notas de manzana, bergamota, canela, naranja y lavanda.
+                    </p>
+                </article>
+
+                <article class="caja_perfume">
+                    <h3>CR7 Cristiano Ronaldo</h3>
+                    <img src="../img/CR7.jpg" alt="CR7 Cristiano Ronaldo">
+                    <p>
+                        Aroma fougère con bergamota, lavanda, canela, vainilla y maderas, ideal para un estilo masculino y moderno.
+                    </p>
+                </article>
+
+            </div>
+
+            <a href="catalogo.html" class="boton_vermas">Ver catálogo completo</a>
+        </section>
+
+        <section class="recomendaciones">
+            <h2>Envíanos tus recomendaciones</h2>
+            <p>
+                ¿Te gustaría que vendiéramos algún perfume o tienes alguna sugerencia
+                para mejorar nuestra tienda? ¡Déjanos tu recomendación!
+            </p>
+
+            <form id="form-recomendacion">
+                <label for="nombre">Nombre</label>
+                <input type="text" id="nombre" name="nombre" required>
+
+                <label for="correo">Correo electrónico</label>
+                <input type="email" id="correo" name="correo" required>
+
+                <label for="tipo">Tipo de recomendación</label>
+                <select id="tipo" name="tipo">
+                    <option value="perfume">Nuevo perfume</option>
+                    <option value="mejora">Mejora de la página</option>
+                    <option value="otro">Otro</option>
+                </select>
+
+                <label for="mensaje">Mensaje</label>
+                <textarea id="mensaje" name="mensaje" rows="4" required></textarea>
+
+                <button type="submit">Enviar recomendación</button>
+            </form>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <p>Teléfono: 899-999-9999</p>
+        <p>Correo electrónico: leparfum@hotmail.com</p>
+        <p>Redes sociales: @LE_PARFUM</p>
+        <p class="copyright">&copy; LE PARFUM</p>
+    </footer>
+
+    <script src="../js/indexform.js"></script>
+</body>
+</html>

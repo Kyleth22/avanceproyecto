@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Catálogo | LE PARFUM</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/styles.css">
+</head>
+
+<body>
+
+<header class="header-principal">
+    <div class="header-top">
+        <div class="logo"><h1>LE PARFUM</h1></div>
+        <div class="auth-links" id="auth-container">
+            <a href="login.html">Iniciar sesión</a>
+            <a href="registro.html">Registrarse</a>
+        </div>
+    </div>
+
+    <nav class="nav-principal">
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="catalogo.html" class="activo">Catálogo</a></li>
+            <li><a href="deseos.html">Lista de deseos</a></li>
+            <li><a href="carrito.html">Carrito</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section class="perfumes">
+    <h2>Catálogo de perfumes</h2>
+
+    <div class="filtros-catalogo">
+        <select id="filtro-marca">
+            <option value="todos">Todas las Marcas</option>
+            </select>
+
+        <select id="filtro-precio">
+            <option value="todos">Cualquier Precio</option>
+            <option value="bajo">Menor a $1,000</option>
+            <option value="medio">$1,000 - $2,000</option>
+            <option value="alto">Mayor a $2,000</option>
+        </select>
+    </div>
+
+    <div class="contenedor-catalogo" id="lista-productos">
+        <p style="color: white; text-align: center;">Cargando fragancias...</p>
+    </div>
+</section>
+
+<footer class="footer">
+    <p>Teléfono: 899-999-9999</p>
+    <p>Correo: leparfum@hotmail.com</p>
+    <p>&copy; LE PARFUM</p>
+</footer>
+
+<script src="../js/catalogo.js"></script>
+
+</body>
+</html>
