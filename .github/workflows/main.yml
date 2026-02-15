@@ -19,7 +19,7 @@ jobs:
         run: cd Backend && npm install
         
       - name: Run Tests
-        run: cd Backend && npm test -- --forceExit
+        run: cd Backend && npm test -- --forceExit --detectOpenHandles
         env:
           DB_HOST: ${{ secrets.DB_HOST }}
           DB_USER: ${{ secrets.DB_USER }}
