@@ -7,7 +7,7 @@ describe('API de Usuario', () => {
         const res = await request(app)
             .post('/api/login')
             .send({
-                correo: 'kyleth2@hotmail.com',
+                correo: 'kyleth3@hotmail.com',
                 password: 'Prueba123'
             });
         
@@ -19,5 +19,6 @@ describe('API de Usuario', () => {
 afterAll(async () => {
     await new Promise(resolve => pool.end(resolve));
 }, 40000);
+
 
 
