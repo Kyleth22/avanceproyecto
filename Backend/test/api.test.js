@@ -18,4 +18,5 @@ describe('API de Usuario', () => {
 
 afterAll(async () => {
     await new Promise(resolve => pool.end(resolve));
-}, 15000); /
+}, 15000);
+
