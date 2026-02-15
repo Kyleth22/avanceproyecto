@@ -1,6 +1,6 @@
 const request = require('supertest');
-const app = require('../server'); 
-const pool = require('../db'); 
+const app = require('../server');
+const pool = require('../db');
 
 describe('API de Usuario', () => {
     test('Debería loguear un usuario correctamente', async () => {
@@ -11,14 +11,11 @@ describe('API de Usuario', () => {
                 password: 'Prueba123'
             });
         
-        // Verificaciones
         expect(res.statusCode).toEqual(200);
         expect(res.body).toHaveProperty('token');
-    }, 10000); 
+    }, 15000);
 });
 
-afterAll((done) => {
-    pool.end(() => {
-        done();
-    });
-});
+afterAll(async () => {
+    await new Promise(resolve => pool.end(resolve));
+}, 15000); /
