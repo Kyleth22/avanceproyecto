@@ -16,11 +16,9 @@ describe('API de Usuario', () => {
     }, 40000);
 });
 
-afterAll((done) => {
-    pool.end(() => {
-        done(); // Indica explícitamente que ya terminamos
-    });
-}, 20000); // <-- Aumenta a 20 segundos para asegurar el cierre
+afterAll(async () => {
+    await pool.end();
+}, 5000); 
 
 
 
