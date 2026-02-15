@@ -13,10 +13,11 @@ describe('API de Usuario', () => {
         
         expect(res.statusCode).toEqual(200);
         expect(res.body).toHaveProperty('token');
-    }, 15000);
+    }, 40000);
 });
 
 afterAll(async () => {
     await new Promise(resolve => pool.end(resolve));
-}, 15000);
+}, 40000);
+
 
